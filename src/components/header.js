@@ -1,0 +1,37 @@
+import React from "react";
+import { Link } from "gatsby";
+import { SearchBar } from "./search-bar";
+import { Hamburger } from "./svgs/hamburger";
+
+export const Header = () => (
+  // I don't use `gatsby-background-image` because it's not maintained.
+  <header className="flex min-h-[18rem] w-full flex-wrap overflow-x-auto bg-[url('/header.webp')] bg-cover bg-center px-4 pb-12 pt-4 shadow-[inset_0_84px_53px_-53px_rgb(0_0_0_/_.5),inset_0_-60px_23px_-23px_rgb(31_41_55)]">
+    <div className="flex min-w-0 basis-full flex-row-reverse items-start justify-between gap-2 text-base text-white md:text-xl">
+      <SearchBar />
+
+      <div className="grow md:hidden">
+        <label htmlFor="hamburger" className="block h-12 w-12 text-2xl">
+          <Hamburger />
+        </label>
+      </div>
+
+      <nav className="hidden min-w-0 flex-row flex-wrap gap-4 text-lg md:flex">
+        {[
+          {
+            name: "Home",
+            link: "/",
+          },
+        ].map(({ name, link }) => (
+          <Link key={link} to={link}>
+            {name}
+          </Link>
+        ))}
+      </nav>
+    </div>
+    <div className="drop-shadow-title flex min-w-0 grow basis-full items-start justify-center font-sans text-2xl font-light text-white md:text-6xl">
+      <Link to="/" className="min-w-0">
+        Sample
+      </Link>
+    </div>
+  </header>
+);
